@@ -66,3 +66,11 @@ def list_task_2(arr):
 def list_task_14_38(arr, a, b):
     """Количество элементов в интервале a..b"""
     return len([x for x in arr if a <= x <= b])
+
+def list_task_26(arr):
+    """Количество элементов между первым и последним минимальным"""
+    if not arr: return 0
+    min_val = min(arr)
+    first = arr.index(min_val)
+    last = len(arr) - 1 - arr[::-1].index(min_val)
+    return max(0, last - first - 1)
