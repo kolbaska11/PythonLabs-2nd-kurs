@@ -74,3 +74,12 @@ def list_task_26(arr):
     first = arr.index(min_val)
     last = len(arr) - 1 - arr[::-1].index(min_val)
     return max(0, last - first - 1)
+
+def list_task_50(l1, l2):
+    """Уникальные элементы из двух списков"""
+    res = []
+    combined = l1 + l2
+    for x in combined:
+        if combined.count(x) == 1:
+            res.append(x)
+    return res
