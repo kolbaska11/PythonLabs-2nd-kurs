@@ -1,14 +1,14 @@
-def check_occurrences():
-    # Считываем список чисел из строки
-    numbers = list(map(int, input("Введите числа через пробел: ").split()))
-    seen = set()
+def synonym_search():
+    n = int(input("Введите количество пар синонимов: "))
+    synonyms = {}
     
-    for num in numbers:
-        if num in seen:
-            print("YES")
-        else:
-            print("NO")
-            seen.add(num)
+    for _ in range(n):
+        word1, word2 = input().split()
+        synonyms[word1] = word2
+        synonyms[word2] = word1 # Синонимы работают в обе стороны
+        
+    query = input("Введите слово для поиска: ")
+    print(synonyms.get(query, "Слово не найдено"))
 
 if __name__ == "__main__":
-    check_occurrences()
+    synonym_search()
