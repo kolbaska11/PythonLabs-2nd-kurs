@@ -12,3 +12,11 @@ def count_coprime(n):
 #Функция 2
 def sum_digits_div_3(n):
     return sum(int(d) for d in str(abs(n)) if int(d) % 3 == 0)
+
+#Функция 3
+def divisor_coprime_with_sum(n):
+    digits_sum = sum(int(d) for d in str(abs(n)))
+    for i in range(2, n + 1):
+        if n % i == 0 and math.gcd(i, digits_sum) == 1:
+            return i
+    return None
