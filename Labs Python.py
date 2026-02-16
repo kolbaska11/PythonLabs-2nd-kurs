@@ -47,3 +47,11 @@ def task_17():
     path = input("Введите путь к файлу: ")
     name = os.path.basename(path)
     print(f"Имя файла: {os.path.splitext(name)[0]}")
+
+#Функция 7, она же main
+def main():
+    print("1 - Проверка латиницы\n2 - Подсчет 'А'\n3 - Имя файла")
+    choice = input("Выберите задачу: ")
+    if choice == '1': task_2()
+    elif choice == '2': task_10()
+    elif choice == '3': task_17()
