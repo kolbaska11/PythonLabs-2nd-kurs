@@ -21,7 +21,7 @@
 #             return i
 #     return None
 
-#Функция 4
+#Функция 4 задание 2
 import os
 
 def task_2():
@@ -33,3 +33,17 @@ def task_2():
     else:
         print("Символы не упорядочены.")
 
+#Функция 5 задание 10
+def task_10():
+    """Подсчет количества букв 'А'"""
+    s = input("Введите строку: ")
+    # Считаем и латинские 'A', и русские 'А' (регистр не важен)
+    count = s.upper().count('A') + s.upper().count('А')
+    print(f"Количество букв А: {count}")
+
+#Функция 6 задание 17
+def task_17():
+    """Имя файла без расширения"""
+    path = input("Введите путь к файлу: ")
+    name = os.path.basename(path)
+    print(f"Имя файла: {os.path.splitext(name)[0]}")
