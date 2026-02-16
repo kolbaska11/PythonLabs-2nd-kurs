@@ -1,14 +1,17 @@
-def synonym_search():
-    n = int(input("Введите количество пар синонимов: "))
-    synonyms = {}
+def election_results():
+    import sys
+    counts = {}
     
-    for _ in range(n):
-        word1, word2 = input().split()
-        synonyms[word1] = word2
-        synonyms[word2] = word1 # Синонимы работают в обе стороны
+    print("Введите фамилии и количество голосов (Ctrl+D для завершения):")
+    # Читаем строки до конца ввода
+    for line in sys.stdin:
+        if not line.strip(): break
+        name, votes = line.split()
+        counts[name] = counts.get(name, 0) + int(votes)
         
-    query = input("Введите слово для поиска: ")
-    print(synonyms.get(query, "Слово не найдено"))
+    # Выводим кандидатов в алфавитном порядке
+    for name in sorted(counts.keys()):
+        print(f"{name} {counts[name]}")
 
 if __name__ == "__main__":
-    synonym_search()
+    election_results()
