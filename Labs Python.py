@@ -55,3 +55,6 @@ def main():
     if choice == '1': task_2()
     elif choice == '2': task_10()
     elif choice == '3': task_17()
+
+if __name__ == "__main__":
+    main()
