@@ -1,17 +1,18 @@
-def election_results():
+def find_most_frequent():
     import sys
+    # Считываем весь текст и разбиваем на слова
+    text = sys.stdin.read().split()
     counts = {}
     
-    print("Введите фамилии и количество голосов (Ctrl+D для завершения):")
-    # Читаем строки до конца ввода
-    for line in sys.stdin:
-        if not line.strip(): break
-        name, votes = line.split()
-        counts[name] = counts.get(name, 0) + int(votes)
+    for word in text:
+        counts[word] = counts.get(word, 0) + 1
         
-    # Выводим кандидатов в алфавитном порядке
-    for name in sorted(counts.keys()):
-        print(f"{name} {counts[name]}")
+    # Сортируем: сначала по частоте (в обратном порядке), 
+    # затем по алфавиту (в прямом)
+    # x[1] - количество, x[0] - само слово
+    best_word = min(counts.keys(), key=lambda w: (-counts[w], w))
+    
+    print(best_word)
 
 if __name__ == "__main__":
-    election_results()
+    find_most_frequent()
