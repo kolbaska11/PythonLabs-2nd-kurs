@@ -20,3 +20,15 @@ def divisor_coprime_with_sum(n):
         if n % i == 0 and math.gcd(i, digits_sum) == 1:
             return i
     return None
+
+#Функция 4
+import os
+
+def task_2():
+    """Проверка упорядоченности строчной латиницы"""
+    s = input("Введите строку: ")
+    lowers = [c for c in s if 'a' <= c <= 'z']
+    if lowers == sorted(lowers):
+        print("Символы упорядочены.")
+    else:
+        print("Символы не упорядочены.")
