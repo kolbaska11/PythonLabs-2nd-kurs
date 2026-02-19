@@ -1,18 +1,26 @@
-def find_most_frequent():
-    import sys
-    # Считываем весь текст и разбиваем на слова
-    text = sys.stdin.read().split()
-    counts = {}
-    
-    for word in text:
-        counts[word] = counts.get(word, 0) + 1
-        
-    # Сортируем: сначала по частоте (в обратном порядке), 
-    # затем по алфавиту (в прямом)
-    # x[1] - количество, x[0] - само слово
-    best_word = min(counts.keys(), key=lambda w: (-counts[w], w))
-    
-    print(best_word)
+import math
 
-if __name__ == "__main__":
-    find_most_frequent()
+class ShapeError(Exception):
+    """Базовый класс для исключений в лабораторной работе """
+    pass
+
+class InvalidDataError(ShapeError):
+    """Ошибка при некорректных входных данных"""
+    pass
+
+class BaseShape:
+    def __init__(self, identifier: str, x: float = 0, y: float = 0):
+        if not identifier:
+            raise InvalidDataError("Идентификатор не может быть пустым")
+        self.id = identifier  # Идентификатор в виде строки 
+        self.x = x            # Поля для хранения состояния
+        self.y = y
+
+    def move(self, dx: float, dy: float):
+        """Метод перемещения объекта на плоскости [cite: 12]"""
+        self.x += dx
+        self.y += dy
+        print(f"Объект {self.id} перемещен в точку ({self.x}, {self.y})")
+
+    def get_area(self) -> float:
+        return 0.0
