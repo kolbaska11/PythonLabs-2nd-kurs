@@ -21,7 +21,6 @@ def get_validated_date(date_str: str) -> str:
         raise ValueError(f"Некорректный аргумент: '{date_str}' не является датой в формате DD/MM/YYYY")
     return date_str
 
-# Пример использования
 if __name__ == "__main__":
     test_dates = ["12/05/2023", "32/01/2020", "01-01-2021", "05/13/2022", "abc"]
     
