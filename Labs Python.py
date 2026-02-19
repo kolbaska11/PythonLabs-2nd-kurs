@@ -1,22 +1,35 @@
-import string
+import re
 
-def solve_task_2(filename):
-    count = 0
+def is_valid_date(date_str: str) -> bool:
+    """
+    Проверяет, соответствует ли строка формату DD/MM/YYYY.
+    """
+    # Регулярное выражение для формата ДД/ММ/ГГГГ
+    # \d{2} - две цифры, / - разделитель, \d{4} - четыре цифры
+    pattern = r"^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$"
+    
+    if re.match(pattern, date_str):
+        return True
+    return False
+
+def get_validated_date(date_str: str) -> str:
+    """
+    Возвращает дату, если она корректна, иначе выбрасывает исключение.
+    """
+    if not is_valid_date(date_str):
+        # Выбрасываем исключение о некорректном аргументе
+        raise ValueError(f"Некорректный аргумент: '{date_str}' не является датой в формате DD/MM/YYYY")
+    return date_str
+
+# Пример использования
+if __name__ == "__main__":
+    test_dates = ["12/05/2023", "32/01/2020", "01-01-2021", "05/13/2022", "abc"]
+    
+    for d in test_dates:
+        print(f"Строка: {d} | Валидна: {is_valid_date(d)}")
+        
     try:
-        with open(filename, 'r', encoding='utf-8') as f:
-            for line in f:
-                # Очищаем строку от знаков препинания и делим на слова
-                words = line.split()
-                for word in words:
-                    # Убираем лишние знаки вокруг слова
-                    clean_word = word.strip(string.punctuation).lower()
-                    
-                    # Проверяем условие (слово должно быть длиннее 1 символа)
-                    if len(clean_word) > 0:
-                        if clean_word[0] == clean_word[-1]:
-                            count += 1
-        return count
-    except FileNotFoundError:
-        return "Файл не найден"
-
-print(f"Количество слов: {solve_task_2('text.txt')}")
+        print(f"Результат функции: {get_validated_date('15/10/2024')}")
+        print(get_validated_date("invalid-date"))
+    except ValueError as e:
+        print(e)
